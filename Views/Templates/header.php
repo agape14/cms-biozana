@@ -29,7 +29,7 @@
 
 <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="<?php echo base_url; ?>Configuracion/admin">Vida Informático</a>
+    <header class="app-header"><a class="app-header__logo" href="<?php echo base_url; ?>Configuracion/admin"><?php echo $_SESSION['nombreapp'] ?></a>
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
         <!-- Navbar Right Menu-->
         <ul class="app-nav">
@@ -64,7 +64,12 @@
             </div>
         </div>
         <ul class="app-menu">
-            <li><a class="app-menu__item" href="<?php echo base_url; ?>Prestamos"><i class="app-menu__icon fa fa-hourglass-start"></i><span class="app-menu__label">Prestamos</span></a></li>
+            <li><a class="app-menu__item" href="<?php echo base_url; ?>Cantidades"><i class="app-menu__icon fa fa-puzzle-piece"></i><span class="app-menu__label">Cantidades</span></a></li>
+            <li><a class="app-menu__item" href="<?php echo base_url; ?>Testimonios"><i class="app-menu__icon fa fa-comments"></i><span class="app-menu__label">Testimonios</span></a></li>
+            <li><a class="app-menu__item" href="<?php echo base_url; ?>Blogs"><i class="app-menu__icon fa fa-th-large"></i><span class="app-menu__label">Blog</span></a></li>
+            <li><a class="app-menu__item" href="<?php echo base_url; ?>Suscripciones"><i class="app-menu__icon fa fa-envelope"></i><span class="app-menu__label">Suscripciones</span></a></li>
+
+            <!--<li><a class="app-menu__item" href="<?php echo base_url; ?>Prestamos"><i class="app-menu__icon fa fa-hourglass-start"></i><span class="app-menu__label">Prestamos</span></a></li>
             <li><a class="app-menu__item" href="<?php echo base_url; ?>Estudiantes"><i class="app-menu__icon fa fa-graduation-cap"></i><span class="app-menu__label">Estudiantes</span></a></li>
             <li><a class="app-menu__item" href="<?php echo base_url; ?>Materia"><i class="app-menu__icon fa fa-list-alt"></i><span class="app-menu__label">Materias</span></a></li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-list"></i><span class="app-menu__label">Libros</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -73,18 +78,21 @@
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Editorial"><i class="icon fa fa-tags"></i> Editorial</a></li>
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Libros"><i class="icon fa fa-book"></i> Libros</a></li>
                 </ul>
-            </li>
+            </li>-->
+
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-wrench"></i><span class="app-menu__label">Administración</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Usuarios"><i class="icon fa fa-user-o"></i> Usuarios</a></li>
                     <li><a class="treeview-item" href="<?php echo base_url; ?>Configuracion"><i class="icon fa fa-cogs"></i> Configuración</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Reportes</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+
+            <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Reportes</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" target="_blank" href="<?php echo base_url; ?>Prestamos/pdf"><i class="icon fa fa-file-pdf-o"></i> Libros Prestados</a></li>
                 </ul>
-            </li>
+            </li>-->
+
         </ul>
     </aside>
     <main class="app-content">

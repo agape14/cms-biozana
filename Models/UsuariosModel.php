@@ -17,6 +17,14 @@ class UsuariosModel extends Query{
         $data = $this->selectAll($sql);
         return $data;
     }
+
+    public function selectConfiguracion()
+    {
+        $sql = "SELECT * FROM configuracion where id=1";
+        $res = $this->select($sql);
+        return $res;
+    }
+
     public function registrarUsuario($usuario, $nombre, $clave)
     {
         $this->usuario = $usuario;

@@ -1,8 +1,8 @@
 <?php
-const base_url = "http://localhost/biblioteca/";
+const base_url = "http://localhost/cms-biozana/";
 const host = "localhost";
 const user = "root";
 const pass = "";
-const db = "biblioteca";
+const db = "cmsbiozana";
 const charset = "charset=utf8";
 ?>

@@ -57,10 +57,12 @@ class Usuarios extends Controller{
         }else{
             $hash = hash("SHA256", $clave);
             $data = $this->model->getUsuario($usuario, $hash);
+            $datoconfig = $this->model->selectConfiguracion();
             if ($data) {
                 $_SESSION['id_usuario'] = $data['id'];
                 $_SESSION['usuario'] = $data['usuario'];
                 $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['nombreapp'] = $datoconfig['nombre'];
                 $_SESSION['activo'] = true;
                 $msg = array('msg' => 'Procesando', 'icono' => 'success');
             }else{

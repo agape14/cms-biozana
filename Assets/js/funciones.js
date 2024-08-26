@@ -1,4 +1,4 @@
-let tblUsuarios, tblEst, tblMateria, tblAutor, tblEditorial, tblLibros, tblPrestar;
+let tblUsuarios, tblEst, tblMateria, tblAutor, tblEditorial, tblLibros, tblPrestar,tblCantidades,tblTestimonios, tblBlogs, tblSuscripciones;
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelector("#modalPass").addEventListener("click", function () {
         document.querySelector('#frmCambiarPass').reset();
@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function(){
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             buttons
     });
-    //fin Libros
+    //fin Libros 
     tblPrestar = $('#tblPrestar').DataTable({
         ajax: {
             url: base_url + "Prestamos/listar",
@@ -267,6 +267,144 @@ document.addEventListener("DOMContentLoaded", function(){
             [0, "desc"]
         ]
     });
+    tblCantidades = $('#tblCantidades').DataTable({
+        ajax: {
+            url: base_url + "Cantidades/listar",
+            dataSrc: ''
+        },
+        columns: [{
+                'data': 'id'
+            },
+            {
+                'data': 'botellas_1litro'
+            },
+            {
+                'data': 'clientes_satisfechos'
+            },
+            {
+                'data': 'fec_actualiza'
+            },
+            {
+                'data': 'acciones'
+            }
+        ],
+        language,
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ]
+    });
+    tblTestimonios = $('#tblTestimonios').DataTable({
+        ajax: {
+            url: base_url + "Testimonios/listar",
+            dataSrc: ''
+        },
+        columns: [{
+                'data': 'id'
+            },
+            {
+                'data': 'nombre'
+            },
+            {
+                'data': 'detalle'
+            },
+            {
+                'data': 'cargo_entidad'
+            },
+            {
+                'data': 'fec_crea'
+            },
+            {
+                'data': 'acciones'
+            }
+        ],
+        language,
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ]
+    });
+
+    tblBlogs = $('#tblBlogs').DataTable({
+        ajax: {
+            url: base_url + "Blogs/listar",
+            dataSrc: ''
+        },
+        columns: [{
+                'data': 'id'
+            },
+            {
+                'data': 'titulo'
+            },
+            {
+                'data': 'imagen'
+            },
+            {
+                'data': 'descripcion'
+            },
+            {
+                'data': 'fec_crea'
+            },
+            {
+                'data': 'etiqueta'
+            },
+            {
+                'data': 'acciones'
+            }
+        ],
+        language,
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ]
+    });
+
+    tblSuscripciones = $('#tblSuscripciones').DataTable({
+        ajax: {
+            url: base_url + "Suscripciones/listar",
+            dataSrc: ''
+        },
+        columns: [{
+                'data': 'id'
+            },
+            {
+                'data': 'email'
+            },
+            {
+                'data': 'fec_crea'
+            },
+        ],
+        language,
+        dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ]
+    });
+
     $('.estudiante').select2({
         placeholder: 'Buscar Estudiante',
         minimumInputLength: 2,
@@ -557,6 +695,43 @@ function btnEditarEst(id) {
     }
 }
 
+function btnEditarCant(id) {
+    document.getElementById("title").textContent = "Actualizar Cantidades";
+    document.getElementById("btnAccion").textContent = "Modificar";
+    const url = base_url + "Cantidades/editar/" + id;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById("id").value = res.id;
+            document.getElementById("botellas_1litro").value = res.botellas_1litro;
+            document.getElementById("clientes_satisfechos").value = res.clientes_satisfechos;
+            $("#editarCantidades").modal("show");
+        }
+    }
+}
+
+function btnEditarTestim(id) {
+    document.getElementById("title").textContent = "Actualizar Testimonios";
+    document.getElementById("btnAccion").textContent = "Modificar";
+    const url = base_url + "Testimonios/editar/" + id;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById("id").value = res.id;
+            document.getElementById("nombre").value = res.nombre;
+            document.getElementById("detalle").value = res.detalle;
+            document.getElementById("cargo_entidad").value = res.cargo_entidad;
+            $("#addeditTestimonios").modal("show");
+        }
+    }
+}
+
 function btnEliminarEst(id) {
     Swal.fire({
         title: 'Esta seguro de eliminar?',
@@ -581,6 +756,54 @@ function btnEliminarEst(id) {
                 }
             }
 
+        }
+    })
+}
+
+function btnEditarBlogs(id) {
+    document.getElementById("title").textContent = "Actualizar Blog";
+    document.getElementById("btnAccion").textContent = "Modificar";
+    document.getElementById("btnAccion").setAttribute("onclick", "registrarBlogs(event)");
+    const url = base_url + "Blogs/editar/" + id;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById("id").value = res.id;
+            document.getElementById("titulo").value = res.titulo;
+            document.getElementById("descripcion").value = res.descripcion;
+            document.getElementById("etiqueta").value = res.etiqueta;
+            // Mostrar el modal para editar blogs
+            $("#addeditBlogs").modal("show");
+        }
+    }
+}
+
+function btnEliminarBlogs(id) {
+    Swal.fire({
+        title: '¿Está seguro de eliminar este blog?',
+        text: "El blog se eliminará de forma permanente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar!',
+        cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Blogs/eliminar/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse(this.responseText);
+                    tblBlogs.ajax.reload(); // Actualiza la tabla de blogs
+                    alertas(res.msg, res.icono); // Muestra alerta con el mensaje y el ícono correspondientes
+                }
+            }
         }
     })
 }
@@ -798,6 +1021,35 @@ function btnEliminarAutor(id) {
     })
 }
 
+
+function btnEliminarTestim(id) {
+    Swal.fire({
+        title: 'Esta seguro de eliminar?',
+        text: "El Testimonio se eliminará de forma permanente!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Testimonios/eliminar/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse(this.responseText);
+                    tblTestimonios.ajax.reload();
+                    alertas(res.msg, res.icono);
+                }
+            }
+
+        }
+    })
+}
+
 function btnReingresarAutor(id) {
     Swal.fire({
         title: 'Esta seguro de reingresar?',
@@ -849,6 +1101,31 @@ function registrarEditorial(e) {
                 const res = JSON.parse(this.responseText);
                 $("#nuevoEditorial").modal("hide");
                 tblEditorial.ajax.reload();
+                alertas(res.msg, res.icono);
+            }
+        }
+    }
+}
+
+function registrarCantidades(e) {
+    e.preventDefault();
+    const botellas_1litro = document.getElementById("botellas_1litro");
+    const clientes_satisfechos = document.getElementById("clientes_satisfechos");
+    if (botellas_1litro.value == "") {
+        alertas('El campo Botellas vendidas es requerido', 'warning');
+    } else if (clientes_satisfechos.value == "") {
+        alertas('El campo Clientes Satisfechos es requerido', 'warning');
+    } else {
+        const url = base_url + "Cantidades/registrar";
+        const frm = document.getElementById("frmContadores");
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                $("#editarCantidades").modal("hide");
+                tblCantidades.ajax.reload();
                 alertas(res.msg, res.icono);
             }
         }
@@ -1102,6 +1379,24 @@ function frmPrestar() {
     document.getElementById("frmPrestar").reset();
     $("#prestar").modal("show");
 }
+
+function frmTestimonios() {
+    document.getElementById("title").textContent = "Registro Testimonios";
+    document.getElementById("btnAccion").textContent = "Registrar";
+    document.getElementById("btnAccion").setAttribute("onclick", "registrarBlogs(event)");
+    document.getElementById("id").value ="";
+    document.getElementById("frmTestimonios").reset();
+    $("#addeditTestimonios").modal("show");
+}
+
+function frmBlogs() {
+    document.getElementById("title").textContent = "Registro Blog";
+    document.getElementById("btnAccion").textContent = "Registrar";
+    document.getElementById("id").value ="";
+    document.getElementById("frmBlogs").reset();
+    $("#addeditBlogs").modal("show");
+}
+
 function btnEntregar(id) {
     Swal.fire({
         title: 'Recibir de libro?',
@@ -1159,6 +1454,62 @@ function registroPrestamos(e){
         }
     }
 }
+
+
+function registrarTestimonios(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const detalle = document.getElementById("detalle").value;
+    const cargo_entidad = document.getElementById("cargo_entidad").value;
+    if (nombre == '' || detalle == '' || cargo_entidad == '' ) {
+        alertas('Todo los campos son requeridos', 'warning');
+    } else {
+        const frm = document.getElementById("frmTestimonios");
+        const url = base_url + "Testimonios/registrar";
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                tblTestimonios.ajax.reload();
+                $("#addeditTestimonios").modal("hide");
+                alertas(res.msg, res.icono);                
+            }
+        }
+    }
+}
+
+function registrarBlogs(e) {
+    e.preventDefault();
+    const id = document.getElementById("id").value; // Verificar si es una actualización o un registro
+    const titulo = document.getElementById("titulo").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const etiqueta = document.getElementById("etiqueta").value;
+    const imagen = document.getElementById("imagen").files[0]; // Archivo de imagen
+
+    // Si es un registro (id vacío), la imagen es obligatoria
+    if (titulo == '' || descripcion == '' || etiqueta == '' || (id == '' && !imagen)) {
+        alertas('Todos los campos son requeridos', 'warning');
+    } else {
+        const frm = document.getElementById("frmBlogs");
+        const url = base_url + "Blogs/registrar";
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm)); // Enviar los datos del formulario, incluyendo la imagen si existe
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                // Recarga la tabla de Blogs
+                tblBlogs.ajax.reload();
+                // Cierra el modal
+                $("#addeditBlogs").modal("hide");
+                alertas(res.msg, res.icono);
+            }
+        }
+    }
+}
+
 function btnRolesUser(id) {
     const http = new XMLHttpRequest();
     const url = base_url + "Usuarios/permisos/" + id;
