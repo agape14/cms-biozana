@@ -1,5 +1,5 @@
 <?php
-const base_url = "http://localhost/cms-biozana/";
+const base_url = "http://cms-biozana.test/";
 const host = "localhost";
 const user = "root";
 const pass = "";

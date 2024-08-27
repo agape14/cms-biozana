@@ -60,7 +60,7 @@ class Blogs extends Controller
     
             // Ruta base para el entorno de producción
             $rutaBaseProduccionCMS = '/home/usuario/public_html/cmsbiozana/Assets/img/blogs/';
-            $rutaBaseProduccionWeb = '/home/usuario/public_html/biozana/assets/img/blog/';
+            $rutaBaseProduccionWeb = '/home/usuario/public_html/assets/img/blog/';
     
             // Determinar el entorno actual
             $esLocal = strpos($_SERVER['SERVER_NAME'], 'localhost') !== false;

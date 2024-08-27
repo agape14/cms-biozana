@@ -24,7 +24,7 @@
             <form class="login-form" id="frmLogin" onsubmit="frmLogin(event);">
                 <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesión</h3>
                 <div class="form-group">
-                    <label class="control-label">USUARIO <?php echo base_url; ?></label>
+                    <label class="control-label">USUARIO</label>
                     <input class="form-control" type="text" placeholder="Usuario" id="usuario" name="usuario" autofocus required>
                 </div>
                 <div class="form-group">

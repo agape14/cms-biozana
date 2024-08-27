@@ -1383,7 +1383,7 @@ function frmPrestar() {
 function frmTestimonios() {
     document.getElementById("title").textContent = "Registro Testimonios";
     document.getElementById("btnAccion").textContent = "Registrar";
-    document.getElementById("btnAccion").setAttribute("onclick", "registrarBlogs(event)");
+    //document.getElementById("btnAccion").setAttribute("onclick", "registrarBlogs(event)");
     document.getElementById("id").value ="";
     document.getElementById("frmTestimonios").reset();
     $("#addeditTestimonios").modal("show");
